@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./data/favicon.ico" />
+    <title>상품 주문</title>
+  </head>
+  <body>
+    <h1>운동화 주문하기</h1>
+
+    <form action="" method="get">
+      <fieldset>
+        <legend>사이즈 선택</legend>
+
+        <input
+          type="radio"
+          name="shoeSize"
+          id="size-250"
+          value="250"
+          checked
+        />
+        <label for="size-250">250mm</label>
+
+        <input type="radio" name="shoeSize" id="size-260" value="260" />
+        <label for="size-260">260mm</label>
+
+        <input type="radio" name="shoeSize" id="size-270" value="270" />
+        <label for="size-270">270mm</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>색상 선택</legend>
+
+        <label for="shoe-color">색상:</label>
+        <select name="shoeColor" id="shoe-color">
+          <option value="">어두운 색</option>
+          <option value="black" selected>블랙</option>
+          <option value="navy">네이비</option>
+          <option value="">밝은 색</option>
+          <option value="white">화이트</option>
+          <option value="beige">베이지</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>배송지</legend>
+
+        <label for="city">도시:</label>
+        <input type="text" name="city" id="city" required />
+      </fieldset>
+
+      <fieldset>
+        <legend>요청사항</legend>
+
+        <label for="request">배송 요청사항</label>
+        <textarea
+          name="request"
+          id="request"
+          rows="4"
+          cols="30"
+          placeholder="배송 요청사항을 입력하세요"
+        ></textarea>
+      </fieldset>
+
+      <div>
+        <input type="submit" value="주문하기" />
+        <input type="reset" value="초기화" />
+      </div>
+    </form>
+  </body>
+</html>

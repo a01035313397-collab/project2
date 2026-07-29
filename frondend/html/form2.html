@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+      form 태그
+      1) input
+         text : 한 줄짜리 text  
+         radio : 같은 name 중 하나만 선택
+         checkbox : 여러 항목 선택 가능
+
+      input 요소에 사용할 수 있는 속성
+      value, readonly, disabled, size, maxlength, min, max, multiple
+      pattern(정규식), placeholder, required(무조건 입력값 요구),
+      step, autofocus
+
+      form 요소에 사용할 수 있는 속성
+      action, method, autocomplete, novalidate
+    -->
+    <form id="form1" action="table.html" method="get" autocomplete="off">
+      <div>
+        <label for="tel">전화번호</label>
+        <input
+          type="tel"
+          name="tel"
+          id="tel"
+          pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+          placeholder="010-0000-0000 형식"
+          title="010-1234-5678 형식으로 입력하세요."
+          required
+        />
+      </div>
+
+      <div>
+        <label for="user-name">이름</label>
+        <input
+          type="text"
+          name="userName"
+          id="user-name"
+          pattern="[가-힣]{2,10}"
+          title="이름은 한글 2~10자로 입력하세요."
+          required
+        />
+      </div>
+
+      <!-- radio : name이 같으면 하나만 선택 -->
+      <div>
+        <input type="radio" name="fruits1" id="radio-apple" value="apple" />
+        <label for="radio-apple">사과</label>
+
+        <input type="radio" name="fruits1" id="radio-grape" value="grape" />
+        <label for="radio-grape">포도</label>
+
+        <input type="radio" name="fruits1" id="radio-banana" value="banana" />
+        <label for="radio-banana">바나나</label>
+      </div>
+
+      <!-- checkbox : 같은 name으로 여러 개 선택 -->
+      <div>
+        <input type="checkbox" name="fruits2" id="check-apple" value="apple" />
+        <label for="check-apple">사과</label>
+
+        <input type="checkbox" name="fruits2" id="check-grape" value="grape" />
+        <label for="check-grape">포도</label>
+
+        <input
+          type="checkbox"
+          name="fruits2"
+          id="check-banana"
+          value="banana"
+        />
+        <label for="check-banana">바나나</label>
+      </div>
+
+      <!-- 앞으로 배울 가능성이 높은 입력 태그 -->
+      <div>
+        <label for="birth-date">날짜</label>
+        <input type="date" name="birthDate" id="birth-date" />
+      </div>
+
+      <div>
+        <label for="profile-file">파일</label>
+        <input type="file" name="profileFile" id="profile-file" />
+      </div>
+
+      <div>
+        <label for="cars">자동차 선택</label>
+        <select name="cars" id="cars" size="5" multiple>
+          <optgroup label="Swedish Cars">
+            <option value="volvo">volvo</option>
+            <option value="saab">Saab</option>
+          </optgroup>
+          <optgroup label="German Cars">
+            <option value="fiat">fiat</option>
+            <option value="audi">audi</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div>
+        <label for="introduction">자기소개</label>
+        <textarea name="introduction" id="introduction" rows="5" cols="30">
+playing</textarea
+        >
+      </div>
+
+      <div>
+        <input type="submit" value="전송" />
+        <input type="button" value="보내기" />
+        <input type="reset" value="초기화" />
+      </div>
+    </form>
+
+    <fieldset form="form1">
+      <legend>Personalia:</legend>
+      <label for="fname">First name:</label>
+      <input type="text" name="fname" id="fname" form="form1" />
+    </fieldset>
+
+    <script>
+      const telInput = document.querySelector("#tel");
+      const nameInput = document.querySelector("#user-name");
+
+      telInput.addEventListener("input", () => {
+        if (telInput.validity.valueMissing) {
+          telInput.setCustomValidity("전화번호를 입력하세요.");
+        } else if (telInput.validity.patternMismatch) {
+          telInput.setCustomValidity(
+            "전화번호를 010-1234-5678 형식으로 입력하세요.",
+          );
+        } else {
+          telInput.setCustomValidity("");
+        }
+
+        telInput.reportValidity();
+      });
+
+      nameInput.addEventListener("input", () => {
+        if (nameInput.validity.valueMissing) {
+          nameInput.setCustomValidity("이름을 입력하세요.");
+        } else if (nameInput.validity.patternMismatch) {
+          nameInput.setCustomValidity("이름은 한글 2~10자로 입력하세요.");
+        } else {
+          nameInput.setCustomValidity("");
+        }
+
+        nameInput.reportValidity();
+      });
+    </script>
+  </body>
+</html>
